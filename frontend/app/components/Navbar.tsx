@@ -1,10 +1,23 @@
+"use client"
 import { SearchIcon,BellIcon } from '@heroicons/react/solid'
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
 
 const Navbar = () => {
+  const [isScrolled,setIsScrolled] = useState<boolean>(false)
+  useEffect(()=>{
+    window.addEventListener('scroll',()=>{
+        if(window.scrollY > 0 ){
+          setIsScrolled(true);
+        }else {
+          setIsScrolled(false);
+        }
+    })
+  },[])
+
 
   return (
-    <header className="w-full flex items-center justify-between fixed top-0 p-4 lg:px-10 lg:py-6 transition-all"  >
+    <header className={`${isScrolled && "bg-[#141414]"} w-full flex items-center justify-between fixed top-0 p-4 lg:px-10 lg:py-6 transition-all`}  >
         <div>
             <img
             src="https://rb.gy/ulxxee"
