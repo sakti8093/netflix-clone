@@ -17,7 +17,7 @@ const Navbar = () => {
 
 
   return (
-    <header className={`${isScrolled && "bg-[#141414]"} w-full flex items-center justify-between fixed top-0 p-4 lg:px-10 lg:py-6 transition-all`}  >
+    <header className={`${isScrolled && "bg-[#141414]"} w-full flex items-center justify-between fixed top-0 p-4 lg:px-10 lg:py-6 transition-all z-20`}  >
         <div>
             <img
             src="https://rb.gy/ulxxee"

@@ -14,3 +14,9 @@
     @apply text-sm font-light cursor-pointer text-[#e5e5e5] transition duration-500 hover:text-[#b3b3b3];
   }
 } 
+/* 
+.item {
+  width: 200px;
+  height: 200px;
+  flex-shrink: 0;
+} */

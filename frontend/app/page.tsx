@@ -1,14 +1,22 @@
 import requests from "@/api/Api";
 import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
+import MainSection from "./components/MainSection";
 
 export default async function Home() {
 
   const data = await getData();
   return (
-    <div className="min-h-screen">
+    <div className="">
         <Navbar />
         <Hero prop={data.NetflixOriginals} />
+        <div className="mt-96 md:mt-[80vh]" >
+        <MainSection title={"Trending Movies"} prop={data.Trending} />
+        <MainSection title={"Netflix Originals"} prop={data.NetflixOriginals} />
+        <MainSection title={"Action Movies"} prop={data.ActionMovies} />
+        <MainSection title={"Comedy Movies"} prop={data.ComedyMovies} />
+        <MainSection title={"Romance Movies"} prop={data.RomanceMovies} />
+        </div>
     </div>
   )
 }
