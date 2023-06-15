@@ -13,7 +13,9 @@ interface Props {
 const Hero = ({ prop }: Props) => {
   const [randomMovie, setRandomMovie] = useState<Movie | null>(null);
   useEffect(() => {
-    setRandomMovie(prop[Math.floor(Math.random() * prop.length)]);
+    if(prop?.length>0){
+      setRandomMovie(prop[Math.floor(Math.random() * prop.length)]);
+    }
   }, []);
 
   return (
