@@ -20,23 +20,23 @@ const Hero = ({ prop }: Props) => {
 
   return (
     <div>
-      <div className="w-screen object-cover absolute left-0 top-0 right-0 h-[100vh] -z-10">
+      <div className="w-screen object-cover absolute left-0 top-0 right-0 h-[100vh] -z-10 bg-gradient-to-b">
         <Image
           fill
           alt="img"
-          className="object-cover opacity-60"
+          className="object-cover opacity-40"
           src={`${base_url}${
             randomMovie?.backdrop_path || randomMovie?.poster_path
           }`}
         />
       </div >
-      <div className="absolute top-20 md:top-[40vh] pl-4 md:pl-10" >
+      <div className="absolute top-20 md:top-[30vh] pl-4 md:pl-10" >
         <h1 className="text-2xl md:text-5xl lg:text-7xl font-bold">
           {randomMovie?.name ||
             randomMovie?.original_name ||
             randomMovie?.title}
         </h1>
-        <p className="text-xs md:text-lg lg:text-xl max-w-xs md:max-w-lg lg:max-w-4xl mt-4">
+        <p className="text-xs md:text-lg lg:text-xl max-w-xs md:max-w-2xl lg:max-w-4xl mt-4">
           {randomMovie?.overview}
         </p>
         <div className="flex space-x-2 items-center mt-4" >

@@ -1,8 +1,9 @@
 "use client";
-import React from "react";
+import React, { useRef } from "react";
 import { Movie } from "@/types/types";
 import Image from "next/image";
 import { base_url } from "@/utils/imageurl";
+import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/solid";
 
 interface props {
   title: string;
@@ -10,18 +11,42 @@ interface props {
 }
 
 const MainSection = ({ title, prop }: props) => {
-  console.log(prop);
+  const divRef = useRef<null | HTMLDivElement>(null);
+  const handleLeftScroll = (target:string) => {
+    if (divRef.current) {
+      const { scrollLeft, clientWidth } = divRef.current;
+      const scrollTo = target === "left" ? scrollLeft - clientWidth : scrollLeft + clientWidth
+      divRef.current?.scrollTo({ left: scrollTo, behavior: "smooth" })
+    }
+  };
 
   return (
-    <div className="p-4">
+    <div className="relative px-4 py-2 md:px-8 md:py-4 group">
       <p>{title}</p>
-      <div className="w-full flex overflow-x-scroll space-x-4">
-        {prop?.map((elem)=>(
-             <div key={elem.id} className="relative w-[200px] h-[200px] flex-shrink-0">
-                <Image  className="object-cover" fill alt="" src={`${base_url}${elem.backdrop_path || elem.poster_path}`} />
-             </div>
+
+      <ChevronLeftIcon
+        onClick={() => handleLeftScroll("left")}
+        className="hidden absolute group-hover:block w-12 h-12 left-6 top-24 z-10 hover:scale-125 transition duration-200 ease-out"
+      />
+      <div
+        ref={divRef}
+        className="relative mt-3 w-full flex overflow-x-scroll space-x-6 scrollbar-hide"
+      >
+        {prop?.map((elem) => (
+          <div
+            key={elem.id}
+            className="relative min-w-[200px] h-28 transition duration-200 ease-out md:h-36 md:min-w-[300px] md:hover:scale-110 flex-shrink-0"
+          >
+            <Image
+              className="object-cover"
+              fill
+              alt=""
+              src={`${base_url}${elem.backdrop_path || elem.poster_path}`}
+            />
+          </div>
         ))}
-    </div>
+      </div>
+      <ChevronRightIcon className="hidden absolute group-hover:block  w-12 h-12 right-6 top-24 z-10 hover:scale-125 transition duration-200 ease-out opacity-0 md:opacity-100" onClick={() => handleLeftScroll("right")} />
     </div>
   );
 };
