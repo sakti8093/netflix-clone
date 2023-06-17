@@ -10,7 +10,7 @@ export default async function Home() {
     <div className="">
         <Navbar />
         <Hero prop={data.NetflixOriginals} />
-        <div className="mt-96 md:mt-[80vh]" >
+        <div className="absolute w-full top-[60vh] md:top-[80vh]" >
         <MainSection title={"Trending Movies"} prop={data.Trending} />
         <MainSection title={"Netflix Originals"} prop={data.NetflixOriginals} />
         <MainSection title={"Action Movies"} prop={data.ActionMovies} />
