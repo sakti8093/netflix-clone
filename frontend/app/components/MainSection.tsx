@@ -26,7 +26,7 @@ const MainSection = ({ title, prop }: props) => {
 
       <ChevronLeftIcon
         onClick={() => handleLeftScroll("left")}
-        className="hidden absolute group-hover:block w-12 h-12 left-6 top-32 z-10 hover:scale-125 transition duration-200 ease-out"
+        className="hidden absolute md:group-hover:block w-12 h-12 left-6 top-32 z-10 hover:scale-125 transition duration-200 ease-out"
       />
       <div
         ref={divRef}
@@ -47,7 +47,7 @@ const MainSection = ({ title, prop }: props) => {
           </div>
         ))}
       </div>
-      <ChevronRightIcon className="hidden absolute group-hover:block  w-12 h-12 right-6 top-32 z-10 hover:scale-125 transition duration-200 ease-out opacity-0 md:opacity-100" onClick={() => handleLeftScroll("right")} />
+      <ChevronRightIcon className="hidden absolute md:group-hover:block  w-12 h-12 right-6 top-32 z-10 hover:scale-125 transition duration-200 ease-out opacity-0 md:opacity-100" onClick={() => handleLeftScroll("right")} />
     </div>
   );
 };
