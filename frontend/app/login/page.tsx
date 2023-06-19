@@ -6,7 +6,7 @@ const Page = () => {
     const router = useRouter()
     const handleSubmit = (e:React.SyntheticEvent) => {
         e.preventDefault();
-        router.push('/');
+        router.push('/home');
     }
 
   return (
