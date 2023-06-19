@@ -6,6 +6,7 @@ import MainSection from "../components/MainSection";
 const Page =async()=>{
 
   const data = await getData();
+  console.log(data.Trending[0]);
   return (
     <div className="">
         <Navbar />

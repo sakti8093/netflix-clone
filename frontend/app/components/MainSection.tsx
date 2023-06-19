@@ -4,6 +4,7 @@ import { Movie } from "@/types/types";
 import Image from "next/image";
 import { base_url } from "@/utils/imageurl";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/solid";
+import { useRouter } from "next/navigation";
 
 interface props {
   title: string;
@@ -11,6 +12,9 @@ interface props {
 }
 
 const MainSection = ({ title, prop }: props) => {
+
+  const router = useRouter();
+
   const divRef = useRef<null | HTMLDivElement>(null);
   const handleLeftScroll = (target:string) => {
     if (divRef.current) {
@@ -19,6 +23,10 @@ const MainSection = ({ title, prop }: props) => {
       divRef.current?.scrollTo({ left: scrollTo, behavior: "smooth" })
     }
   };
+
+  const handleClick = (id:Number) =>{
+    router.push(`/info/${id}`)
+  }
 
   return (
     <div className="relative px-4 py-2 md:px-8 md:py-4 group">
@@ -35,6 +43,7 @@ const MainSection = ({ title, prop }: props) => {
         {prop?.map((elem) => (
           <div
             key={elem.id}
+            onClick={()=>handleClick(elem.id)}
             className="relative min-w-[200px] h-28 transition duration-200 ease-out md:h-48 md:min-w-[400px] md:hover:scale-110 flex-shrink-0"
           >
             <Image
