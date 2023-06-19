@@ -30,7 +30,7 @@ const Home = () => {
   return (
     <div className="px-5 md:px-8 lg:px-10 py-4 bg-[#00081D]">
       <div className=" flex justify-between items-center ">
-        <div  className="cursor-pointer object-contain w-[74px] md:w-[150px]" >
+        <div  className="relative cursor-pointer object-contain h-8 w-20 md:w-44 md:h-9" >
         <Image
           src={logo}
           alt=""
