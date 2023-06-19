@@ -22,11 +22,11 @@ const MainSection = ({ title, prop }: props) => {
 
   return (
     <div className="relative px-4 py-2 md:px-8 md:py-4 group">
-      <p>{title}</p>
+      <p className="text-sm md:text-lg" >{title}</p>
 
       <ChevronLeftIcon
         onClick={() => handleLeftScroll("left")}
-        className="hidden absolute group-hover:block w-12 h-12 left-6 top-24 z-10 hover:scale-125 transition duration-200 ease-out"
+        className="hidden absolute group-hover:block w-12 h-12 left-6 top-32 z-10 hover:scale-125 transition duration-200 ease-out"
       />
       <div
         ref={divRef}
@@ -35,18 +35,19 @@ const MainSection = ({ title, prop }: props) => {
         {prop?.map((elem) => (
           <div
             key={elem.id}
-            className="relative min-w-[200px] h-28 transition duration-200 ease-out md:h-36 md:min-w-[300px] md:hover:scale-110 flex-shrink-0"
+            className="relative min-w-[200px] h-28 transition duration-200 ease-out md:h-48 md:min-w-[400px] md:hover:scale-110 flex-shrink-0"
           >
             <Image
-              className="object-cover"
+              className=" object-center opacity-60"
               fill
               alt=""
               src={`${base_url}${elem.backdrop_path || elem.poster_path}`}
             />
+            <p className="z-10 absolute bottom-4 max-w-lg left-2 font-semibold" >{elem.title}</p>
           </div>
         ))}
       </div>
-      <ChevronRightIcon className="hidden absolute group-hover:block  w-12 h-12 right-6 top-24 z-10 hover:scale-125 transition duration-200 ease-out opacity-0 md:opacity-100" onClick={() => handleLeftScroll("right")} />
+      <ChevronRightIcon className="hidden absolute group-hover:block  w-12 h-12 right-6 top-32 z-10 hover:scale-125 transition duration-200 ease-out opacity-0 md:opacity-100" onClick={() => handleLeftScroll("right")} />
     </div>
   );
 };
