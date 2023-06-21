@@ -6,17 +6,17 @@ import MainSection from "../components/MainSection";
 const Page =async()=>{
 
   const data = await getData();
-  console.log(data.Trending[0]);
+  console.log(data,"data");
   return (
     <div className="">
         <Navbar />
         <Hero prop={data.NetflixOriginals} />
         <div className="absolute w-full top-[60vh] md:top-[80vh]" >
-        <MainSection title={"Trending Movies"} prop={data.Trending} />
-        <MainSection title={"Netflix Originals"} prop={data.NetflixOriginals} />
-        <MainSection title={"Action Movies"} prop={data.ActionMovies} />
-        <MainSection title={"Comedy Movies"} prop={data.ComedyMovies} />
-        <MainSection title={"Romance Movies"} prop={data.RomanceMovies} />
+          <MainSection title={"Trending Movies"} prop={data.Trending} />
+          <MainSection title={"Netflix Originals"} prop={data.NetflixOriginals} />
+          <MainSection title={"Action Movies"} prop={data.ActionMovies} />
+          <MainSection title={"Comedy Movies"} prop={data.ComedyMovies} />
+          <MainSection title={"Romance Movies"} prop={data.RomanceMovies} />
         </div>
     </div>
   )

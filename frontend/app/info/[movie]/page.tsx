@@ -3,8 +3,8 @@ import Image from 'next/image';
 import React from 'react'
 
 
-const Page = async({params:{movie}}) => {
-    const movieDetail = await getDetail( Number(movie))
+const Page = async({ params }: { params: { movie: string }}) => {
+    const movieDetail = await getDetail( Number(params.movie))
   return (
     <div>
         <div className='relative fill h-[100vh]' >

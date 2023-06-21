@@ -25,8 +25,6 @@ const Home = () => {
     }
   }
 
-  console.log(currentContainer);
-
   return (
     <div className="px-5 md:px-8 lg:px-10 py-4 bg-[#00081D]">
       <div className=" flex justify-between items-center ">
