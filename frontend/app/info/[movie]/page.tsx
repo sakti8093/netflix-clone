@@ -1,28 +1,67 @@
-import { base_url } from '@/utils/imageurl';
-import Image from 'next/image';
-import React from 'react'
+import Player from "@/app/components/Player";
+import Artists from "@/app/components/info/Artists";
+import Back from "@/app/components/info/Back";
+import MovieHeader from "@/app/components/info/MovieHeader";
+import React from "react";
 
+const Page = async ({ params }: { params: { movie: string } }) => {
+  let { movieDetail, movieCasts } = await getDetail(Number(params.movie));
+  const trailer = movieDetail.videos.results.filter(
+    (video) => video.type === "Trailer"
+  );
+  const key = trailer[0].key;
 
-const Page = async({ params }: { params: { movie: string }}) => {
-    const movieDetail = await getDetail( Number(params.movie))
+  movieCasts = movieCasts.cast.filter(
+    (movie) => movie.known_for_department === "Acting"
+  );
   return (
     <div>
-        <div className='relative fill h-[100vh]' >
-            <Image fill alt=''  src={`${base_url}${movieDetail.backdrop_path || movieDetail.poster_path}`}  />
-        </div>
+      <Back />
+      <div className="relative h-[40vh]">
+        <Player url={key} />
+      </div>
+      <div className="p-3" >
+        <MovieHeader
+          title={movieDetail.original_title}
+          runtime={movieDetail.runtime}
+          languages={movieDetail.original_language}
+          overview={movieDetail.overview}
+          vote={Math.round(movieDetail.vote_average * 10) / 10}
+          genres={movieDetail.genres}
+          companies={movieDetail.production_companies}
+        />
+        <Artists casts={movieCasts} />
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Page
+export default Page;
 
-const getDetail = (movie:Number) =>{
-    
-    const movieDetail = fetch(`https://api.themoviedb.org/3/movie/${movie}?language=en-US&append_to_response=videos`,{
-        headers: {
-            accept: 'application/json',
-            Authorization: `Bearer ${process.env.NEXT_PUBLIC_ACCESS_KEY}`
-          }
-    }).then((response) =>response.json()).then((result)=>{return result})
-    return movieDetail
-}
+const getDetail = async (movie: Number) => {
+  const headers = {
+    accept: "application/json",
+    Authorization: `Bearer ${process.env.NEXT_PUBLIC_ACCESS_KEY}`,
+  };
+
+  const [movieDetail, movieCasts] = await Promise.all([
+    fetch(
+      `https://api.themoviedb.org/3/movie/${movie}?language=en-US&append_to_response=videos`,
+      {
+        headers: headers,
+      }
+    )
+      .then((response) => response.json())
+      .then((result) => {
+        return result;
+      }),
+    fetch(
+      ` http://api.themoviedb.org/3/movie/${movie}/casts?api_key=${process.env.NEXT_PUBLIC_API_KEY}`
+    )
+      .then((response) => response.json())
+      .then((result) => {
+        return result;
+      }),
+  ]);
+  return { movieDetail: movieDetail, movieCasts: movieCasts };
+};

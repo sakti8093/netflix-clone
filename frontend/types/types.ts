@@ -31,3 +31,37 @@ export interface Genre {
       | 'Trailer'
       | 'Teaser'
   }
+
+  export interface movie_detail {
+    adult : boolean,
+    backdrop_path : string,
+    belongs_to_collection : {
+      id : number,
+      name : string,
+      poster_path : string,
+      backdrop_path : string
+    },
+    budget : number,
+    genres : Genre[],
+    homepage : string,
+    id :number,
+    imdb_id : string,
+    original_language : string,
+    original_title : string,
+    overview : string,
+    popularity : number,
+    poster_path : string
+  }
+
+  export interface Casts {
+    adult : boolean,
+    gender : number,
+    id : number,
+    known_for_department : string,
+    name : String,
+    popularity : number,
+    original_name : String,
+    profile_path: string,
+    credit_id:String,
+    job : string,
+}

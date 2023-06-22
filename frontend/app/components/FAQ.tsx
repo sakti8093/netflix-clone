@@ -10,7 +10,6 @@ interface prop {
 }
 
 const FAQ = ({mainText,text1,text2,show}:prop) => {
-    console.log(show);
   return (
     <div >
     <div className='w-full flex justify-between bg-[#132144] p-6 text-xl md:text-2xl' >
