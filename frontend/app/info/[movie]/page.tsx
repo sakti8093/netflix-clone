@@ -2,16 +2,23 @@ import Player from "@/app/components/Player";
 import Artists from "@/app/components/info/Artists";
 import Back from "@/app/components/info/Back";
 import MovieHeader from "@/app/components/info/MovieHeader";
+import { Casts, movie_detail } from "@/types/types";
 import React from "react";
-
+interface movie_details {
+  movieDetail : movie_detail,
+  movieCasts : {
+    cast : Casts[]
+  }
+}
 const Page = async ({ params }: { params: { movie: string } }) => {
-  let { movieDetail, movieCasts } = await getDetail(Number(params.movie));
+  let { movieDetail, movieCasts }:movie_details = await getDetail(Number(params.movie));
+  console.log(movieDetail)
   const trailer = movieDetail.videos.results.filter(
     (video) => video.type === "Trailer"
   );
   const key = trailer[0].key;
 
-  movieCasts = movieCasts.cast.filter(
+  const actors = movieCasts.cast.filter(
     (movie) => movie.known_for_department === "Acting"
   );
   return (
@@ -30,7 +37,7 @@ const Page = async ({ params }: { params: { movie: string } }) => {
           genres={movieDetail.genres}
           companies={movieDetail.production_companies}
         />
-        <Artists casts={movieCasts} />
+        <Artists casts={actors} />
       </div>
     </div>
   );
