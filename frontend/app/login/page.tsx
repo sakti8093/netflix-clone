@@ -1,15 +1,23 @@
 "use client"
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import google from '../../public/assets/google.svg'
+import { redirect, useRouter } from "next/navigation";
 import React from "react";
 import banner1 from '../../public/assets/banner1.jpeg'
 import logo from '../../public/assets/logo.svg'
+import { signIn, useSession } from "next-auth/react";
 
 const Page = () => {
+    const { data:session } = useSession();
     const router = useRouter()
     const handleSubmit = (e:React.SyntheticEvent) => {
         e.preventDefault();
         router.push('/home');
+    }
+
+    if(session){
+      console.log(session.user?.name,"helo");
+      redirect('/home');
     }
 
   return (
@@ -36,6 +44,9 @@ const Page = () => {
         <button className="w-full mt-12 py-3 bg-[#e50914] rounded" >
             sign in
         </button>
+        <div onClick={()=>signIn('google')} className="relative w-8 h-8 m-auto mt-5" >
+            <Image fill alt="" src={google} />
+        </div>
         <p className="text-sm mt-4" ><span className="text-[gray]" >New to Netflix?</span> Sign up Now</p>
       </form>
     </div>

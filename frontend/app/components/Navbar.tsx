@@ -2,9 +2,11 @@
 import { SearchIcon,BellIcon } from '@heroicons/react/solid'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
+import Popup from './Popup'
 
 const Navbar = () => {
   const [isScrolled,setIsScrolled] = useState<boolean>(false)
+  const [ showPopup, setPop] = useState<boolean>()
   useEffect(()=>{
     window.addEventListener('scroll',()=>{
         if(window.scrollY > 0 ){
@@ -37,13 +39,15 @@ const Navbar = () => {
             <SearchIcon className="hidden h-6 w-6 sm:inline" />
             <p className='hidden lg:inline' >Kids</p>
             <BellIcon className="h-6 w-6" />
-        <Link href="/account">
+        <div className='relative' >
           <img
+            onClick={()=>setPop(!showPopup)}
             src="https://rb.gy/g1pwyx"
             alt=""
             className="cursor-pointer rounded"
           />
-        </Link>
+          { showPopup && <Popup />}
+        </div>
         </div>
     </header>
   )

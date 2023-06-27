@@ -2,15 +2,23 @@ import requests from "@/api/Api";
 import Hero from "../components/Hero";
 import Navbar from "../components/Navbar";
 import MainSection from "../components/MainSection";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../api/auth/[...nextauth]/lib/authOptions";
+import NextAuth from "next-auth/next";
+import { redirect } from "next/navigation";
 
 const Page =async()=>{
-
+  const session = await getServerSession(NextAuth(authOptions))
+  console.log(JSON.stringify(session, null, 2),"ses");
+  if(!session){
+    redirect('/login');
+  }
   const data = await getData();
   return (
     <div className="">
         <Navbar />
         <Hero prop={data.NetflixOriginals} />
-        <div className="absolute w-full top-[60vh] md:top-[80vh]" >
+        <div className="absolute w-full top-[50vh] md:top-[80vh]" >
           <MainSection title={"Trending Movies"} prop={data.Trending} />
           <MainSection title={"Netflix Originals"} prop={data.NetflixOriginals} />
           <MainSection title={"Action Movies"} prop={data.ActionMovies} />

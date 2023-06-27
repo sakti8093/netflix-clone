@@ -34,29 +34,28 @@ const MainSection = ({ title, prop }: props) => {
 
       <ChevronLeftIcon
         onClick={() => handleLeftScroll("left")}
-        className="hidden absolute md:group-hover:block w-12 h-12 left-6 top-32 z-10 hover:scale-125 transition duration-200 ease-out"
+        className="hidden absolute md:group-hover:block w-16 h-16 left-6 top-[50%] z-10 hover:scale-125 transition duration-200 ease-out"
       />
       <div
         ref={divRef}
-        className="relative mt-3 w-full flex overflow-x-scroll space-x-6 scrollbar-hide"
+        className="relative mt-3 w-full flex overflow-y-hidden overflow-x-scroll space-x-10 scrollbar-hide "
       >
         {prop?.map((elem) => (
           <div
             key={elem.id}
             onClick={()=>handleClick(elem.id)}
-            className="relative min-w-[200px] h-28 transition duration-200 ease-out md:h-48 md:min-w-[400px] md:hover:scale-110 flex-shrink-0"
+            className="relative min-w-[200px] h-[300px] transition duration-200 ease-out md:h-[400px] md:min-w-[300px] md:hover:scale-110 flex-shrink-0"
           >
             <Image
-              className=" object-center opacity-60"
+              className=" object-center opacity-80 rounded-xl"
               fill
               alt=""
-              src={`${base_url}${elem.backdrop_path || elem.poster_path}`}
+              src={`${base_url}${elem.poster_path || elem.backdrop_path}`}
             />
-            <p className="z-10 absolute bottom-4 max-w-lg left-2 font-semibold" >{elem.title}</p>
           </div>
         ))}
       </div>
-      <ChevronRightIcon className="hidden absolute md:group-hover:block  w-12 h-12 right-6 top-32 z-10 hover:scale-125 transition duration-200 ease-out opacity-0 md:opacity-100" onClick={() => handleLeftScroll("right")} />
+      <ChevronRightIcon className="hidden absolute md:group-hover:block  w-16 h-16 right-6 top-[50%] z-10 hover:scale-125 transition duration-200 ease-out opacity-0 md:opacity-100" onClick={() => handleLeftScroll("right")} />
     </div>
   );
 };
