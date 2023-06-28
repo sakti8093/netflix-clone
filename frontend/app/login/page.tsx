@@ -16,7 +16,6 @@ const Page = () => {
     }
 
     if(session){
-      console.log(session.user?.name,"helo");
       redirect('/home');
     }
 

@@ -12,7 +12,7 @@ export interface Genre {
     release_date?: string
     first_air_date: string
     genre_ids: number[]
-    id: number
+    id: Number
     name: string
     origin_country: string[]
     original_language: string

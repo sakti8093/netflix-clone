@@ -12,7 +12,6 @@ interface movie_details {
 }
 const Page = async ({ params }: { params: { movie: string } }) => {
   let { movieDetail, movieCasts }:movie_details = await getDetail(Number(params.movie));
-  console.log(movieDetail)
   const trailer = movieDetail.videos.results.filter(
     (video) => video.type === "Trailer"
   );
@@ -38,6 +37,7 @@ const Page = async ({ params }: { params: { movie: string } }) => {
           companies={movieDetail.production_companies}
         />
         <Artists casts={actors} />
+
       </div>
     </div>
   );

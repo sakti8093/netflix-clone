@@ -5,13 +5,15 @@ import Image from "next/image";
 import { base_url } from "@/utils/imageurl";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/solid";
 import { useRouter } from "next/navigation";
+import netflix_originals from '../../public/assets/netflix_originals.png'
 
 interface props {
   title: string;
   prop: Movie[];
+  isOriginal?: boolean;
 }
 
-const MainSection = ({ title, prop }: props) => {
+const MainSection = ({ title, prop,isOriginal }: props) => {
 
   const router = useRouter();
 
@@ -42,7 +44,7 @@ const MainSection = ({ title, prop }: props) => {
       >
         {prop?.map((elem) => (
           <div
-            key={elem.id}
+            key={elem.name}
             onClick={()=>handleClick(elem.id)}
             className="relative min-w-[200px] h-[300px] transition duration-200 ease-out md:h-[400px] md:min-w-[300px] md:hover:scale-110 flex-shrink-0"
           >
@@ -52,6 +54,14 @@ const MainSection = ({ title, prop }: props) => {
               alt=""
               src={`${base_url}${elem.poster_path || elem.backdrop_path}`}
             />
+            { isOriginal && <div className="absolute top-2 right-2 w-10 h-12" >
+            <Image
+              className="object-contain w-full"
+              fill
+              alt=""
+              src={netflix_originals}
+            />
+            </div>}
           </div>
         ))}
       </div>
