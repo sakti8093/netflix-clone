@@ -5,7 +5,14 @@ import React, { useEffect, useState } from "react";
 
 const Page = () => {
   const router = useRouter();
-  const  [savedEmail,setSavedEmail] = useState(sessionStorage.getItem('email') || "")
+  const  [savedEmail,setSavedEmail] = useState("")
+
+  useEffect(() => {
+    const item = sessionStorage.getItem('email')
+    if(item) {
+        setSavedEmail(item);
+    }
+  }, [])
 
   const handleSubmit = (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
