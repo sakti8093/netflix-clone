@@ -16,6 +16,7 @@ const Home = () => {
   const router = useRouter();
 
   const [currentContainer,setCurrentContainer] = useState<null | Number>()
+  const [email,setEmail] = useState<string>("")
 
   const handleClick = (current : Number) => {
     if(current === currentContainer){
@@ -23,6 +24,12 @@ const Home = () => {
     }else{
       setCurrentContainer(current);
     }
+  }
+
+  const handleSaveEmail = (e:React.FormEvent<HTMLFormElement>) =>{
+    e.preventDefault();
+    sessionStorage.setItem("email",email);
+    router.push('/registration')
   }
 
   return (
@@ -64,17 +71,19 @@ const Home = () => {
             Ready to watch ? Enter your email to create or restart your
             membership.
           </p>
-          <div className="w-full mt-3 md:flex items-end gap-5 max-w-xl">
+          <form onSubmit={(e)=>handleSaveEmail(e)} className="w-full mt-3 md:flex items-end gap-5 max-w-xl">
             <input
               className="w-full outline-none bg-[#161616B3] border border-gray-500 px-4 py-3 rounded"
               placeholder="Email"
-              type="text"
+              type="email"
+              required
+              onChange={(e)=>setEmail(e.target.value)}
             />
             <button className="bg-[#e50914] mt-4 font-bold border-none min-w-[200px] rounded py-3 w-[200px] flex items-center justify-center">
               <p className="text-xl">Get Started</p>
-              <ChevronRightIcon className=" w-7 h-7" />{" "}
+              <ChevronRightIcon className=" w-7 h-7" />
             </button>
-          </div>
+          </form>
         </div>
       </div>
       <div className=" md:px-10 lg:px-24 custom-bg-1">

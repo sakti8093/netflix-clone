@@ -46,7 +46,7 @@ const Page = () => {
         <div onClick={()=>signIn('google')} className="relative w-8 h-8 m-auto mt-5" >
             <Image fill alt="" src={google} />
         </div>
-        <p className="text-sm mt-4" ><span className="text-[gray]" >New to Netflix?</span> Sign up Now</p>
+        <p onClick={()=>router.push('/registration')} className="text-sm mt-4" ><span className="text-[gray]" >New to Netflix?</span> Sign up Now</p>
       </form>
     </div>
   );
